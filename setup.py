@@ -6,14 +6,14 @@ with open('README.rst', 'r') as readme_file:
 
 
 setuptools.setup(
-    name='django-cpf-cnpj',
-    version='1.0.0',
+    name='django-cpf-cnpj2',
+    version='1.1.0',
     long_description=long_description,
     long_description_content_type = 'text/x-rst',
     description='A django model and form field for normalised cpf and cnpj.',
-    url='https://github.com/flavianogjc/django-cpf-cnpj',
-    author='flavianogjc',
-    author_email='flavianogjc@hotmail.com',
+    url='https://github.com/elyasha/django-cpf-cnpj2',
+    author='elyasha',
+    author_email='matheuselyasha@gmail.com',
     platforms='OS Independent',
     license='MIT',
     classifiers=[

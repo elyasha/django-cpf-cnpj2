@@ -17,7 +17,7 @@ Install from pypi::
 
 Install from git::
 
-    pip install git+https://github.com/flavianogjc/django-cpf-cnpj.git
+    pip install git+https://github.com/elyasha/django-cpf-cnpj2.git
 
 
 Basic usage
@@ -51,4 +51,3 @@ Check tests with tox::
 Check a specific combination::
 
     tox -e py38-django22
-
