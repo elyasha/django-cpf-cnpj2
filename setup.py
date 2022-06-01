@@ -7,7 +7,7 @@ with open('README.rst', 'r') as readme_file:
 
 setuptools.setup(
     name='django-cpf-cnpj2',
-    version='1.1.0',
+    version='1.2.0',
     long_description=long_description,
     long_description_content_type='text/x-rst',
     description='A django model and form field for normalised cpf and cnpj.',
@@ -32,5 +32,6 @@ setuptools.setup(
     ],
     python_requires='>=3.6',
     install_requires=['Django >= 2.2',],
-    packages=['django_cpf_cnpj',]
+    packages=['django_cpf_cnpj',],
+    data_files=[('locale', ['django_cpf_cnpj/locale/pt_BR/LC_MESSAGES/django.mo', 'django_cpf_cnpj/locale/pt_BR/LC_MESSAGES/django.po'])]
 )
