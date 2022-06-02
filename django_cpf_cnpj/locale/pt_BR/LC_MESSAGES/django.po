@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-01 20:07-0300\n"
+"POT-Creation-Date: 2022-06-01 21:03-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,40 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\fields.py:33
+#: .\django_cpf_cnpj\fields.py:33
 msgid "CPF number"
 msgstr "Número de CPF"
 
-#: .\fields.py:90
+#: .\django_cpf_cnpj\fields.py:90
 msgid "CNPJ number"
 msgstr "Número de CNPJ"
 
-#: .\forms.py:28
+#: .\django_cpf_cnpj\forms.py:28
 #, python-brace-format
 msgid "Enter a valid cpf number (e.g. {example_number})"
 msgstr "Insira um número de CPF válido (por exemplo {example_number})"
 
-#: .\forms.py:31
+#: .\django_cpf_cnpj\forms.py:31
 #, python-brace-format
 msgid "Enter a valid cpf number (e.g. {example_number})."
 msgstr "Insira um número de CPF válido (por exemplo {example_number})"
 
-#: .\forms.py:61
+#: .\django_cpf_cnpj\forms.py:61
 #, python-brace-format
 msgid "Enter a valid cnpj number (e.g. {example_number})"
 msgstr "Insira um número de CNPJ válido (por exemplo {example_number})"
 
-#: .\forms.py:65
+#: .\django_cpf_cnpj\forms.py:65
 #, python-brace-format
 msgid "Enter a valid cnpj number (e.g. {example_number})."
 msgstr "Insira um número de CNPJ válido (por exemplo {example_number})"
 
-#: .\validators.py:119
+#: .\django_cpf_cnpj\validators.py:119
 #, python-brace-format
 msgid "({value}) is not valid cpf."
 msgstr "({value}) não é um CPF válido"
 
-#: .\validators.py:126
+#: .\django_cpf_cnpj\validators.py:126
 #, python-brace-format
 msgid "({value}) is not valid cnpj."
 msgstr "({value}) não é um CNPJ válido"
