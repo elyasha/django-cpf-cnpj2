@@ -42,13 +42,13 @@ class CPFFieldTestCase(TestCase):
     def test_repr_for_valid_string(self):
         self.assertEqual(
             repr(cpf_to_python(self.valid_string_cpf)),
-            f'CPF(raw_input={self.valid_string_cpf})',
+            'CPF(raw_input={valid_string_cpf})'.format(valid_string_cpf=self.valid_string_cpf),
         )
 
     def test_repr_for_invalid_string(self):
         self.assertEqual(
             repr(cpf_to_python(self.invalid_string_cpf)),
-            f'InvalidCPF(raw_input={self.invalid_string_cpf})',
+            'InvalidCPF(raw_input={invalid_string_cpf})'.format(invalid_string_cpf=self.invalid_string_cpf),
         )
 
     def test_list_valid_string_are_valid(self):
@@ -270,7 +270,7 @@ class CPFFormFieldTest(TestCase):
                 form.errors,
                 {
                     'cpf': [
-                        f'({invalid_cpf}) is not valid cpf.'
+                        '({invalid_cpf}) is not valid cpf.'.format(invalid_cpf=invalid_cpf)
                     ]
                 },
             )
@@ -283,7 +283,7 @@ class CPFFormFieldTest(TestCase):
             form.errors,
             {
                 'cpf': [
-                    f'Ensure this value has at most 14 characters (it has 15).'
+                    'Ensure this value has at most 14 characters (it has 15).'
                 ]
             },
         )
@@ -319,13 +319,13 @@ class CNPJFieldTestCase(TestCase):
     def test_repr_for_valid_string(self):
         self.assertEqual(
             repr(cnpj_to_python(self.valid_string_cnpj)),
-            f'CNPJ(raw_input={self.valid_string_cnpj})',
+            'CNPJ(raw_input={valid_string_cnpj})'.format(valid_string_cnpj=self.valid_string_cnpj),
         )
 
     def test_repr_for_invalid_string(self):
         self.assertEqual(
             repr(cnpj_to_python(self.invalid_string_cnpj)),
-            f'InvalidCNPJ(raw_input={self.invalid_string_cnpj})',
+            'InvalidCNPJ(raw_input={invalid_string_cnpj})'.format(invalid_string_cnpj=self.invalid_string_cnpj),
         )
 
     def test_list_valid_string_are_valid(self):
@@ -547,7 +547,7 @@ class CNPJFormFieldTest(TestCase):
                 form.errors,
                 {
                     'cnpj': [
-                        f'({invalid_cnpj}) is not valid cnpj.'
+                        '({invalid_cnpj}) is not valid cnpj.'.format(invalid_cnpj=invalid_cnpj)
                     ]
                 },
             )
@@ -560,7 +560,7 @@ class CNPJFormFieldTest(TestCase):
             form.errors,
             {
                 'cnpj': [
-                    f'Ensure this value has at most 18 characters (it has 19).'
+                    'Ensure this value has at most 18 characters (it has 19).'
                 ]
             },
         )

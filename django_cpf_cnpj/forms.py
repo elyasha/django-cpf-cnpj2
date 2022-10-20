@@ -10,7 +10,6 @@ from django_cpf_cnpj.widgets import CPFWidget, CNPJWidget
 from django_cpf_cnpj.cpf import cpf_to_python
 from django_cpf_cnpj.cnpj import cnpj_to_python
 
-
 __all__ = ['CPFForm', 'CNPJForm']
 
 
@@ -25,10 +24,12 @@ class CPFForm(CharField):
         if 'invalid' not in self.error_messages:
             if masked:
                 example_number = '012.345.678-90'
-                error_message = _(f'Enter a valid cpf number (e.g. {example_number})')
+                error_message = _('Enter a valid cpf number (e.g. {example_number})').format(
+                    example_number=example_number)
             else:
                 example_number = '01234567890'
-                error_message = _(f'Enter a valid cpf number (e.g. {example_number}).')
+                error_message = _('Enter a valid cpf number (e.g. {example_number}).').format(
+                    example_numbe=example_number)
 
             self.error_messages['invalid'] = format_lazy(
                 error_message, example_number=example_number

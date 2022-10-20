@@ -116,14 +116,14 @@ def cnpj_random_generator():
 def validate_cpf(value):
     if not is_valid_cpf(value):
         raise ValidationError(
-            _(f'({value}) is not valid cpf.')
+            _('({value}) is not valid cpf.').format(value=value)
         )
 
 
 def validate_cnpj(value):
     if not is_valid_cnpj(value):
         raise ValidationError(
-            _(f'({value}) is not valid cnpj.')
+            _('({value}) is not valid cnpj.').format(value=value)
         )
 
 
