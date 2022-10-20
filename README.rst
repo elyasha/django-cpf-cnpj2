@@ -1,5 +1,5 @@
 ========================
-django-cpf-cnpf
+django-cpf-cnpf2
 ========================
 
 A Django library for working with `cpf`_ and `cnpj`_ fields.
@@ -12,7 +12,7 @@ Installation
 
 Install from pypi::
 
-    pip install django-cpf-cnpj
+    pip install django-cpf-cnpj2
 
 
 Install from git::
