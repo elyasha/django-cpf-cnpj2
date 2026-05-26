@@ -82,19 +82,27 @@ def validate_cpf(value):
 # ---------------------------------------------------------------------------
 
 # Alfabeto permitido para os 12 primeiros caracteres
-_CNPJ_ALPHA = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-_CNPJ_CHAR_VALUE = {c: i for i, c in enumerate(_CNPJ_ALPHA)}
+_CNPJ_VALID_CHARS = set('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 _WEIGHTS_V1 = (5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2)
 _WEIGHTS_V2 = (6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3)
 
 
 def _cnpj_char_to_int(c: str) -> int:
-    """Converte um caractere alfanumérico de CNPJ para seu valor inteiro."""
-    try:
-        return _CNPJ_CHAR_VALUE[c.upper()]
-    except KeyError:
+    """
+    Converte um caractere alfanumérico de CNPJ para seu valor inteiro.
+
+    Conforme a IN RFB 2.229/2024 e Nota Técnica DFe 2025.001, o valor
+    de cada caractere é obtido pelo seu código ASCII subtraído de 48:
+        '0' → 0, '1' → 1, …, '9' → 9
+        'A' → 17, 'B' → 18, …, 'Z' → 42
+    Isso garante retrocompatibilidade total com CNPJs numéricos, pois
+    dígitos mantêm seus próprios valores.
+    """
+    c = c.upper()
+    if c not in _CNPJ_VALID_CHARS:
         raise ValueError(f"Caractere inválido para CNPJ alfanumérico: {c!r}")
+    return ord(c) - 48
 
 
 def _normalize_cnpj(value: str) -> Optional[str]:
@@ -110,7 +118,7 @@ def _normalize_cnpj(value: str) -> Optional[str]:
         return None
 
     # Os 12 primeiros podem ser alfanuméricos; os 2 últimos devem ser dígitos
-    if not all(c in _CNPJ_CHAR_VALUE for c in cleaned[:12]):
+    if not all(c in _CNPJ_VALID_CHARS for c in cleaned[:12]):
         return None
     if not cleaned[12:].isdigit():
         return None
@@ -178,7 +186,7 @@ def cnpj_generator(value) -> Optional[str]:
     # Preenche com zeros à esquerda se necessário, até 12 caracteres
     cleaned = cleaned.zfill(12)[:12]
 
-    if not all(c in _CNPJ_CHAR_VALUE for c in cleaned):
+    if not all(c in _CNPJ_VALID_CHARS for c in cleaned):
         return None
 
     v1, v2 = last_digits_cnpj(cleaned)
@@ -197,7 +205,7 @@ def cnpj_random_generator(alpha: bool = False) -> str:
     """
     import random
 
-    charset = _CNPJ_ALPHA if alpha else '0123456789'
+    charset = list(_CNPJ_VALID_CHARS) if alpha else list('0123456789')
 
     while True:
         candidate = ''.join(random.choices(charset, k=12))
@@ -232,7 +240,12 @@ if __name__ == '__main__':
     print('CNPJ numérico: OK')
 
     # --- CNPJ alfanumérico ---
-    # Geração e validação de round-trip
+    # Regressão: CNPJ com dígitos verificadores 00 não deve ser confundido
+    # com sequência inválida — e CNPJs reais com DV=24 devem validar
+    assert is_valid_cnpj('5B.LGX.TSX/0001-24'), "Regressão: 5B.LGX.TSX/0001-24 deve ser válido"
+    assert not is_valid_cnpj('5B.LGX.TSX/0001-00'), "5B.LGX.TSX/0001-00 não deve ser válido"
+
+
     for _ in range(10):
         c = cnpj_random_generator(alpha=True)
         assert is_valid_cnpj(c), f"CNPJ alfanumérico inválido gerado: {c}"
