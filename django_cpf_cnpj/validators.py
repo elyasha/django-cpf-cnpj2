@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -95,7 +97,7 @@ def _cnpj_char_to_int(c: str) -> int:
         raise ValueError(f"Caractere inválido para CNPJ alfanumérico: {c!r}")
 
 
-def _normalize_cnpj(value: str) -> str | None:
+def _normalize_cnpj(value: str) -> Optional[str]:
     """
     Remove máscara (pontos, barra, hífen) e normaliza para maiúsculas.
     Retorna None se o resultado não tiver 14 caracteres ou contiver
@@ -165,7 +167,7 @@ def is_valid_cnpj(value) -> bool:
     return True
 
 
-def cnpj_generator(value) -> str | None:
+def cnpj_generator(value) -> Optional[str]:
     """
     Gera um CNPJ válido a partir dos 12 primeiros caracteres fornecidos.
 
